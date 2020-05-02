@@ -152,6 +152,11 @@ BuildApp() {
     verbose_flag="--verbose"
   fi
 
+  local track_widget_creation_flag="false"
+  if [[ -n "$TRACK_WIDGET_CREATION" ]]; then
+    track_widget_creation_flag="true"
+  fi
+
   local performance_measurement_option=""
   if [[ -n "$PERFORMANCE_MEASUREMENT_FILE" ]]; then
     performance_measurement_option="--performance-measurement-file=${PERFORMANCE_MEASUREMENT_FILE}"
