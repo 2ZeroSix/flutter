@@ -931,6 +931,9 @@ abstract class BaseFlutterTask extends DefaultTask {
             if (dartObfuscation == true) {
                 args "-dDartObfuscation=true"
             }
+            if (trackWidgetCreation != null) {
+                args "-dTrackWidgetCreation=${trackWidgetCreation}"
+            }
             if (dartDefines != null) {
                 args "--DartDefines=${dartDefines}"
             }
