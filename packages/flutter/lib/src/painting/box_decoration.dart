@@ -319,7 +319,7 @@ class BoxDecoration extends Decoration {
         && other.image == image
         && other.border == border
         && other.borderRadius == borderRadius
-        && other.boxShadow == boxShadow
+        && listEquals<BoxShadow>(other.boxShadow, boxShadow)
         && other.gradient == gradient
         && other.shape == shape;
   }
@@ -331,7 +331,7 @@ class BoxDecoration extends Decoration {
       image,
       border,
       borderRadius,
-      boxShadow,
+      hashList(boxShadow),
       gradient,
       shape,
     );
