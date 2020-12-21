@@ -75,6 +75,7 @@ mixin AnimationEagerListenerMixin {
 /// This mixin requires that the mixing class provide methods [didRegisterListener]
 /// and [didUnregisterListener]. Implementations of these methods can be obtained
 /// by mixing in another mixin from this library, such as [AnimationLazyListenerMixin].
+@Deprecated('mix in [ChangeNotifier] instead')
 mixin AnimationLocalListenersMixin {
   final ObserverList<VoidCallback> _listeners = ObserverList<VoidCallback>();
 
