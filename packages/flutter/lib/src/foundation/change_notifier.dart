@@ -145,6 +145,19 @@ class ChangeNotifier implements Listenable {
     return _listeners!.isNotEmpty;
   }
 
+
+  /// Called immediately before a listener is added via [addListener].
+  ///
+  /// At the time this method is called the registered listener is not yet
+  /// notified by [notifyListeners].
+  void didRegisterListener() {}
+
+  /// Called immediately after a listener is removed via [removeListener].
+  ///
+  /// At the time this method is called the removed listener is no longer
+  /// notified by [notifyListeners].
+  void didUnregisterListener() {}
+
   /// Register a closure to be called when the object changes.
   ///
   /// If the given closure is already registered, an additional instance is
@@ -174,6 +187,7 @@ class ChangeNotifier implements Listenable {
   @override
   void addListener(VoidCallback listener) {
     assert(_debugAssertNotDisposed());
+    didRegisterListener();
     _listeners!.add(_ListenerEntry(listener));
   }
 
@@ -192,10 +206,14 @@ class ChangeNotifier implements Listenable {
   ///    changes.
   @override
   void removeListener(VoidCallback listener) {
-    assert(_debugAssertNotDisposed());
+    if (_listeners == null) {
+      return;
+    }
+
     for (final _ListenerEntry entry in _listeners!) {
       if (entry.listener == listener) {
         entry.unlink();
+        didUnregisterListener();
         return;
       }
     }

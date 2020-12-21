@@ -168,7 +168,7 @@ mixin AnimationWithParentMixin<T> {
 ///
 /// see also:
 /// [AnimationWithParentMixin] - as a way to directly deffer its behavior to parent.
-/// [AnimationLocalListenersMixin] - contains implementation of [notifyListeners]
+/// [ChangeNotifier] - contains implementation of [notifyListeners]
 /// [AnimationLocalStatusListenersMixin] - contains implementation of [notifyStatusListeners]
 mixin AnimationLazyWithParentMixin<T, P> on AnimationLazyListenerMixin {
   /// The animation whose value this animation will proxy.
@@ -241,7 +241,7 @@ mixin AnimationLazyWithParentMixin<T, P> on AnimationLazyListenerMixin {
 /// object, and then later change the animation from which the proxy receives
 /// its value.
 class ProxyAnimation extends Animation<double>
-  with AnimationLazyListenerMixin, AnimationLocalListenersMixin, AnimationLocalStatusListenersMixin {
+  with ChangeNotifier, AnimationLazyListenerMixin, AnimationLocalStatusListenersMixin {
 
   /// Creates a proxy animation.
   ///
@@ -443,7 +443,7 @@ class ReverseAnimation extends Animation<double>
 ///  * [Curve.flipped] and [FlippedCurve], which provide the reverse of a
 ///    [Curve].
 class CurvedAnimation extends Animation<double>
-    with AnimationLocalStatusListenersMixin, AnimationLocalListenersMixin,
+    with ChangeNotifier, AnimationLocalStatusListenersMixin,
         AnimationLazyListenerMixin, AnimationLazyWithParentMixin<double, double> {
   /// Creates a curved animation.
   ///
@@ -563,7 +563,7 @@ enum _TrainHoppingMode { minimize, maximize }
 /// removed, it exposes a [dispose()] method. Call this method to shut this
 /// object down.
 class TrainHoppingAnimation extends Animation<double>
-  with AnimationEagerListenerMixin, AnimationLocalListenersMixin, AnimationLocalStatusListenersMixin {
+  with ChangeNotifier, AnimationEagerListenerMixin, AnimationLocalStatusListenersMixin {
 
   /// Creates a train-hopping animation.
   ///
@@ -690,7 +690,7 @@ class TrainHoppingAnimation extends Animation<double>
 /// [next] animation if [next] is moving, and the status of the [first]
 /// animation otherwise.
 abstract class CompoundAnimation<T> extends Animation<T>
-  with AnimationLazyListenerMixin, AnimationLocalListenersMixin, AnimationLocalStatusListenersMixin {
+  with ChangeNotifier, AnimationLazyListenerMixin, AnimationLocalStatusListenersMixin {
   /// Creates a CompoundAnimation. Both arguments must be non-null. Either can
   /// be a CompoundAnimation itself to combine multiple animations.
   CompoundAnimation({

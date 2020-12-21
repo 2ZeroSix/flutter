@@ -208,7 +208,7 @@ enum AnimationBehavior {
 ///  * [Tween], the base class for converting an [AnimationController] to a
 ///    range of values of other types.
 class AnimationController extends Animation<double>
-  with AnimationEagerListenerMixin, AnimationLocalListenersMixin, AnimationLocalStatusListenersMixin {
+  with ChangeNotifier, AnimationEagerListenerMixin, AnimationLocalStatusListenersMixin {
   /// Creates an animation controller.
   ///
   /// * `value` is the initial value of the animation. If defaults to the lower

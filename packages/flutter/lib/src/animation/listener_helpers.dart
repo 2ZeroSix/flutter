@@ -11,7 +11,7 @@ import 'animation.dart';
 ///
 /// This mixin provides implementations of [didRegisterListener] and [didUnregisterListener],
 /// and therefore can be used in conjunction with mixins that require these methods,
-/// [AnimationLocalListenersMixin] and [AnimationLocalStatusListenersMixin].
+/// [ChangeNotifier] and [AnimationLocalStatusListenersMixin].
 mixin AnimationLazyListenerMixin {
   int _listenerCounter = 0;
 
@@ -60,18 +60,13 @@ mixin AnimationLazyListenerMixin {
 ///
 /// This mixin provides implementations of [didRegisterListener] and [didUnregisterListener],
 /// and therefore can be used in conjunction with mixins that require these methods,
-/// [AnimationLocalListenersMixin] and [AnimationLocalStatusListenersMixin].
+/// [ChangeNotifier] and [AnimationLocalStatusListenersMixin].
 mixin AnimationEagerListenerMixin {
   /// This implementation ignores listener registrations.
   void didRegisterListener() { }
 
   /// This implementation ignores listener registrations.
   void didUnregisterListener() { }
-
-  /// Release the resources used by this object. The object is no longer usable
-  /// after this method is called.
-  @mustCallSuper
-  void dispose() { }
 }
 
 /// A mixin that implements the [addListener]/[removeListener] protocol and notifies

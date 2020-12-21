@@ -77,7 +77,7 @@ abstract class Animatable<T> {
 }
 
 class _AnimatedEvaluation<T> extends Animation<T>
-    with AnimationLazyListenerMixin, AnimationLocalStatusListenersMixin, AnimationLocalListenersMixin,
+    with ChangeNotifier, AnimationLazyListenerMixin, AnimationLocalStatusListenersMixin,
          AnimationLazyWithParentMixin<T, double> {
   _AnimatedEvaluation(this.parent, this._evaluatable);
 
