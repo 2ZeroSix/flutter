@@ -270,7 +270,6 @@ void main() {
     final TestNotifier source = TestNotifier();
     source.dispose();
     expect(() { source.addListener(() { }); }, throwsFlutterError);
-    expect(() { source.removeListener(() { }); }, throwsFlutterError);
     expect(() { source.dispose(); }, throwsFlutterError);
     expect(() { source.notify(); }, throwsFlutterError);
   });
