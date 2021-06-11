@@ -118,6 +118,7 @@ class FlutterOptions {
   static const String kNullAssertions = 'null-assertions';
   static const String kAndroidGradleDaemon = 'android-gradle-daemon';
   static const String kDeferredComponents = 'deferred-components';
+  static const String kPodInstall = 'pod-install';
 }
 
 abstract class FlutterCommand extends Command<void> {
@@ -733,6 +734,13 @@ abstract class FlutterCommand extends Command<void> {
     );
   }
 
+  void addXcodeSpecificBuildOptions({ bool hide = false }) {
+    argParser.addFlag(FlutterOptions.kPodInstall,
+      defaultsTo: true,
+      help: 'Install pods if changes are detected.',
+    );
+  }
+
   void addNativeNullAssertions({ bool hide = false }) {
     argParser.addFlag('native-null-assertions',
       defaultsTo: true,
@@ -923,6 +931,9 @@ abstract class FlutterCommand extends Command<void> {
     final bool androidGradleDaemon = !argParser.options.containsKey(FlutterOptions.kAndroidGradleDaemon)
       || boolArg(FlutterOptions.kAndroidGradleDaemon);
 
+    final bool shouldPodInstall = !argParser.options.containsKey(FlutterOptions.kPodInstall)
+      || boolArg(FlutterOptions.kPodInstall);
+
     if (dartObfuscation && (splitDebugInfoPath == null || splitDebugInfoPath.isEmpty)) {
       throwToolExit(
         '"--${FlutterOptions.kDartObfuscationOption}" can only be used in '
@@ -995,6 +1006,7 @@ abstract class FlutterCommand extends Command<void> {
       codeSizeDirectory: codeSizeDirectory,
       androidGradleDaemon: androidGradleDaemon,
       packageConfig: packageConfig,
+      shouldPodInstall: shouldPodInstall,
     );
   }
 
