@@ -196,6 +196,7 @@ abstract class _BuildIOSSubCommand extends BuildSubCommand {
     addBundleSkSLPathOption(hide: !verboseHelp);
     addNullSafetyModeOptions(hide: !verboseHelp);
     usesAnalyzeSizeFlag();
+    addXcodeSpecificBuildOptions();
   }
 
   @override
