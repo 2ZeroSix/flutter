@@ -118,6 +118,7 @@ class FlutterOptions {
   static const String kNullAssertions = 'null-assertions';
   static const String kAndroidGradleDaemon = 'android-gradle-daemon';
   static const String kDeferredComponents = 'deferred-components';
+  static const String kPodInstall = 'pod-install';
 }
 
 abstract class FlutterCommand extends Command<void> {
@@ -730,6 +731,13 @@ abstract class FlutterCommand extends Command<void> {
             'process to terminate after the build is completed.',
       defaultsTo: true,
       hide: hide,
+    );
+  }
+
+  void addIosSpecificBuildOptions({ bool hide = false }) {
+    argParser.addFlag(FlutterOptions.kPodInstall,
+      defaultsTo: true,
+      help: 'Install pods if changes are detected.',
     );
   }
 

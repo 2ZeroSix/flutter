@@ -196,6 +196,7 @@ abstract class _BuildIOSSubCommand extends BuildSubCommand {
     addBundleSkSLPathOption(hide: !verboseHelp);
     addNullSafetyModeOptions(hide: !verboseHelp);
     usesAnalyzeSizeFlag();
+    addIosSpecificBuildOptions();
   }
 
   @override
@@ -207,6 +208,7 @@ abstract class _BuildIOSSubCommand extends BuildSubCommand {
   bool get forSimulator;
   bool get configOnly;
   bool get shouldCodesign;
+  bool get shouldPodInstall => boolArg('pod-install');
 
   Future<BuildableIOSApp> buildableIOSApp(BuildInfo buildInfo) async {
     _buildableIOSApp ??= await applicationPackages.getPackageForPlatform(

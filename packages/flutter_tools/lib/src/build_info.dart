@@ -40,6 +40,7 @@ class BuildInfo {
     this.codeSizeDirectory,
     this.androidGradleDaemon = true,
     this.packageConfig = PackageConfig.empty,
+    this.shouldPodInstall = true,
   }) : extraFrontEndOptions = extraFrontEndOptions ?? const <String>[],
        extraGenSnapshotOptions = extraGenSnapshotOptions ?? const <String>[],
        dartDefines = dartDefines ?? const <String>[],
@@ -146,6 +147,9 @@ class BuildInfo {
   /// This is captured once during startup, but the actual package configuration
   /// may change during a 'flutter run` workflow.
   final PackageConfig packageConfig;
+
+  /// Whether pod install should executed when 
+  final bool shouldPodInstall;
 
   static const BuildInfo debug = BuildInfo(BuildMode.debug, null, treeShakeIcons: false);
   static const BuildInfo profile = BuildInfo(BuildMode.profile, null, treeShakeIcons: kIconTreeShakerEnabledDefault);

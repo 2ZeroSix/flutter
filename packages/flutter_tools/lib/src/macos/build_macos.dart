@@ -31,6 +31,7 @@ Future<void> buildMacOS({
   String targetOverride,
   @required bool verboseLogging,
   SizeAnalyzer sizeAnalyzer,
+  bool podInstall,
 }) async {
   if (!flutterProject.macos.xcodeWorkspace.existsSync()) {
     throwToolExit('No macOS desktop project configured. '
@@ -63,7 +64,9 @@ Future<void> buildMacOS({
     useMacOSConfig: true,
     setSymroot: false,
   );
-  await processPodsIfNeeded(flutterProject.macos, getMacOSBuildDirectory(), buildInfo.mode);
+  if (podInstall) {
+    await processPodsIfNeeded(flutterProject.macos, getMacOSBuildDirectory(), buildInfo.mode);
+  }
   // If the xcfilelists do not exist, create empty version.
   if (!flutterProject.macos.inputFileList.existsSync()) {
     flutterProject.macos.inputFileList.createSync(recursive: true);

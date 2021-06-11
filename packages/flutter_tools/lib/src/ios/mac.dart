@@ -100,6 +100,7 @@ Future<XcodeBuildResult> buildXcodeProject({
   String deviceID,
   bool configOnly = false,
   XcodeBuildAction buildAction = XcodeBuildAction.build,
+  bool podInstall = true,
 }) async {
   if (!upgradePbxProjWithFlutterAssets(app.project, globals.logger)) {
     return XcodeBuildResult(success: false);
@@ -191,7 +192,9 @@ Future<XcodeBuildResult> buildXcodeProject({
     targetOverride: targetOverride,
     buildInfo: buildInfo,
   );
-  await processPodsIfNeeded(project.ios, getIosBuildDirectory(), buildInfo.mode);
+  if (podInstall) {
+    await processPodsIfNeeded(project.ios, getIosBuildDirectory(), buildInfo.mode);
+  }
   if (configOnly) {
     return XcodeBuildResult(success: true);
   }
